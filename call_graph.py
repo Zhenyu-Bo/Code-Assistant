@@ -50,11 +50,12 @@ def generate_call_graph(repo_path):
                     func_name = re.findall(r'\b\w+\s+(\w+)\s*\(.*?\)\s*\{', func)
                     if func_name:
                         user_functions.add(func_name[0])
+                        call_graph[func_name[0]] = []
         except Exception as e:
             print(f"读取文件 {file} 时出错: {e}")
 
     # 输出用户自定义函数列表
-    # print(f"用户自定义函数: {', '.join(user_functions)}")
+    print(f"用户自定义函数: {', '.join(user_functions)}")
 
     for file in source_files:
         try:

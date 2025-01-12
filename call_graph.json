@@ -1,14 +1,38 @@
 {
-    "main": [
-        "genRand",
-        "miller_rabin",
-        "output",
-        "houtput",
-        "mul"
+    "add": [],
+    "sub": [],
+    "sub1": [],
+    "output": [],
+    "mul": [],
+    "greater_or_equal": [],
+    "div2": [],
+    "mul2": [],
+    "divd": [
+        "greater_or_equal",
+        "div2",
+        "mul2"
     ],
-    "genRand": [
-        "randomize"
+    "mod": [
+        "mul",
+        "sub",
+        "greater_or_equal"
     ],
+    "is_odd": [],
+    "is_0": [],
+    "is_1": [],
+    "is_n_minus_1": [
+        "sub1"
+    ],
+    "qpow": [
+        "is_0",
+        "is_odd",
+        "div2",
+        "qpow",
+        "mul",
+        "mod"
+    ],
+    "tran": [],
+    "randomize": [],
     "miller_rabin": [
         "divd",
         "sub1",
@@ -22,25 +46,13 @@
         "mul",
         "mod"
     ],
-    "qpow": [
-        "is_0",
-        "is_odd",
-        "div2",
-        "qpow",
-        "mul",
-        "mod"
+    "genRand": [
+        "randomize"
     ],
-    "is_n_minus_1": [
-        "sub1"
-    ],
-    "mod": [
-        "mul",
-        "sub",
-        "greater_or_equal"
-    ],
-    "divd": [
-        "greater_or_equal",
-        "div2",
-        "mul2"
+    "main": [
+        "genRand",
+        "miller_rabin",
+        "output",
+        "mul"
     ]
 }

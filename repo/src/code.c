@@ -6,9 +6,6 @@ int LEN = 42, LENDIV2 = 21;
 const int MXW = 0xfffffff, SHF = 28;
 typedef ll Bighex[100];
 
-char global_debug;
-FILE *file;
-
 void add(Bighex a, Bighex b) {
 	int jw = 0;
 	for (int i = 0; i < LEN; ++i) {
@@ -38,28 +35,11 @@ void sub1(Bighex a) {
 }
 
 void output(Bighex a) {
-	if (!global_debug) {
-		for (int i = 36; ~i; --i) {
-			if (i == 36) printf("%04llx", a[i]);
-			else printf("%07llx", a[i]);
-		}
-		puts("");
-	}
-	else {
-		for (int i = 36; ~i; --i) {
-			if (i == 36) fprintf(file, "%04llx", a[i]);
-			else fprintf(file, "%07llx", a[i]);
-		}
-		fprintf(file, ",");
-	}
-}
-
-void houtput(Bighex a) {
-	for (int i = 18; ~i; --i) {
-		if (i == 18) fprintf(file, "%02llx", a[i]);
-		else fprintf(file, "%07llx", a[i]);
-	}
-	fprintf(file, ",");
+    for (int i = 36; ~i; --i) {
+        if (i == 36) printf("%04llx", a[i]);
+        else printf("%07llx", a[i]);
+    }
+    puts("");
 }
 
 void mul(Bighex a, Bighex b) {
@@ -195,6 +175,11 @@ int tran(Bighex x) {
 	return x[0];
 }
 
+int randomize() {
+	if (RAND_MAX > (1 << 28)) return rand() % (1 << 28);
+	else return (rand() * 11451 + rand() + 4) % (1 << 28);
+}
+
 char miller_rabin(Bighex n, int times, char debug) {
 	for (int i = 0; i < LEN; ++i) re[i] = 0;
 	re[38] = 1;
@@ -212,8 +197,7 @@ char miller_rabin(Bighex n, int times, char debug) {
 		qpow(x, aa, n, v);
 		if (is_1(v) || is_n_minus_1(v, n)) {
 			if (debug) {
-				if (!global_debug) printf("Success: %d\n", tran(x));
-				else fprintf(file, "[SUCCESS]%d,", tran(x));
+				printf("Success: %d\n", tran(x));
 			}
 			continue;
 		}
@@ -228,32 +212,21 @@ char miller_rabin(Bighex n, int times, char debug) {
 		}
 		if (!ok) {
 			if (debug) {
-				if (!global_debug) printf("Failed: %d\n", tran(x));
-				else fprintf(file, "[FAIL]%d,", tran(x));
+				printf("Failed: %d\n", tran(x));
 				issuc = 0;
 			}
 			else return 0;
 		}
 		else {
 			if (debug) {
-				if (!global_debug) printf("Success: %d\n", tran(x));
-				else fprintf(file, "[SUCCESS]%d,", tran(x));
+				printf("Success: %d\n", tran(x));
 			}
 		}
-	}
-	if (debug && global_debug) {
-		if (!issuc) fprintf(file, "Failed\n");
-		else fprintf(file, "Succeed\n");
 	}
 	return 1;
 }
 
 Bighex a, b;
-
-int randomize() {
-	if (RAND_MAX > (1 << 28)) return rand() % (1 << 28);
-	else return (rand() * 11451 + rand() + 4) % (1 << 28);
-}
 
 void genRand(Bighex x) {
 	ll vsum = 0;
@@ -264,17 +237,7 @@ void genRand(Bighex x) {
 }
 
 int main(int argc, char **argv) {
-	if (argc >= 2) {
-		global_debug = 1;
-		file = fopen(argv[1], "a");
-		fprintf(file, argv[2]);
-		fprintf(file, ",");
-	}
-	if (!global_debug) srand(time(NULL));
-	else {
-		int x; scanf("%d", &x);
-		srand(x);
-	}
+	srand(time(NULL));
 	genRand(a);
 	while (!miller_rabin(a, 10, 0)) {
 		genRand(a);
@@ -284,25 +247,14 @@ int main(int argc, char **argv) {
 		genRand(b);
 	}
 	LEN >>= 1;
-	if (!global_debug) {
-		printf("Number A: ");
-		output(a);
-	}
-	else {
-		houtput(a);
-	}
-	if (!global_debug) {
-		printf("Number B: ");
-		output(b);
-	}
-	else {
-		houtput(b);
-	}
+    printf("Number A: ");
+    output(a);
+    printf("Number B: ");
+    output(b);
 	LEN <<= 1;
 	mul(a, b);
 	output(a);
-	if (!global_debug) printf("Time used: %.3lfs\n", 1. * clock() / CLOCKS_PER_SEC);
-	else fprintf(file, "%.3lf,", 1. * clock() / CLOCKS_PER_SEC);
+	printf("Time used: %.3lfs\n", 1. * clock() / CLOCKS_PER_SEC);
 	LEN <<= 1; LENDIV2 <<= 1;
 	miller_rabin(a, 20, 1);
 	return 0;
