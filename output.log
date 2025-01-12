@@ -1,0 +1,506 @@
+./repo/src/code.c:208:10: warning: implicit declaration of function 'randomize' is invalid in C99 [-Wimplicit-function-declaration]
+                x[0] = randomize();
+                       ^
+./repo/src/code.c:270:17: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                fprintf(file, argv[2]);
+                              ^~~~~~~
+./repo/src/code.c:270:17: note: treat the string as an argument to avoid this
+                fprintf(file, argv[2]);
+                              ^
+                              "%s", 
+ --- Call graph Dump --- 
+  Function: < root > calls: __bswap_16 __bswap_32 __bswap_64 __uint16_identity __uint32_identity __uint64_identity add sub sub1 output printf puts fprintf houtput mul greater_or_equal div2 mul2 divd mod is_odd is_0 is_1 is_n_minus_1 qpow tran miller_rabin randomize rand genRand main fopen srand time scanf clock 
+  Function: main calls: fopen fprintf fprintf srand time scanf srand genRand miller_rabin genRand genRand miller_rabin genRand printf output houtput printf output houtput mul output printf clock fprintf clock miller_rabin 
+  Function: clock calls: 
+  Function: scanf calls: 
+  Function: time calls: 
+  Function: srand calls: 
+  Function: fopen calls: 
+  Function: genRand calls: randomize randomize rand rand 
+  Function: miller_rabin calls: divd sub1 is_odd div2 randomize qpow is_1 is_n_minus_1 printf tran fprintf tran mul mod is_n_minus_1 printf tran fprintf tran printf tran fprintf tran fprintf fprintf 
+  Function: randomize calls: rand rand rand 
+  Function: rand calls: 
+  Function: tran calls: 
+  Function: qpow calls: is_0 is_odd div2 qpow mul mod mul mod 
+  Function: is_n_minus_1 calls: sub1 
+  Function: is_1 calls: 
+  Function: is_0 calls: 
+  Function: is_odd calls: 
+  Function: mod calls: mul mul sub greater_or_equal sub 
+  Function: divd calls: greater_or_equal div2 mul2 
+  Function: mul2 calls: 
+  Function: div2 calls: 
+  Function: greater_or_equal calls: 
+  Function: mul calls: 
+  Function: houtput calls: fprintf fprintf fprintf 
+  Function: output calls: printf printf puts fprintf fprintf fprintf 
+  Function: fprintf calls: 
+  Function: puts calls: 
+  Function: printf calls: 
+  Function: sub1 calls: 
+  Function: sub calls: 
+  Function: add calls: 
+  Function: __uint64_identity calls: 
+  Function: __uint32_identity calls: 
+  Function: __uint16_identity calls: 
+  Function: __bswap_64 calls: 
+  Function: __bswap_32 calls: 
+  Function: __bswap_16 calls: 
+2 warnings generated.
+/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x1b): undefined reference to `main'
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+
+./repo/src/code.c:208:10: warning: implicit declaration of function 'randomize' is invalid in C99 [-Wimplicit-function-declaration]
+                x[0] = randomize();
+                       ^
+./repo/src/code.c:270:17: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                fprintf(file, argv[2]);
+                              ^~~~~~~
+./repo/src/code.c:270:17: note: treat the string as an argument to avoid this
+                fprintf(file, argv[2]);
+                              ^
+                              "%s", 
+ --- Call graph Dump --- 
+  Function: < root > calls: __bswap_16 __bswap_32 __bswap_64 __uint16_identity __uint32_identity __uint64_identity add sub sub1 output printf puts fprintf houtput mul greater_or_equal div2 mul2 divd mod is_odd is_0 is_1 is_n_minus_1 qpow tran miller_rabin randomize rand genRand main fopen srand time scanf clock 
+  Function: main calls: fopen fprintf fprintf srand time scanf srand genRand miller_rabin genRand genRand miller_rabin genRand printf output houtput printf output houtput mul output printf clock fprintf clock miller_rabin 
+  Function: clock calls: 
+  Function: scanf calls: 
+  Function: time calls: 
+  Function: srand calls: 
+  Function: fopen calls: 
+  Function: genRand calls: randomize randomize rand rand 
+  Function: miller_rabin calls: divd sub1 is_odd div2 randomize qpow is_1 is_n_minus_1 printf tran fprintf tran mul mod is_n_minus_1 printf tran fprintf tran printf tran fprintf tran fprintf fprintf 
+  Function: randomize calls: rand rand rand 
+  Function: rand calls: 
+  Function: tran calls: 
+  Function: qpow calls: is_0 is_odd div2 qpow mul mod mul mod 
+  Function: is_n_minus_1 calls: sub1 
+  Function: is_1 calls: 
+  Function: is_0 calls: 
+  Function: is_odd calls: 
+  Function: mod calls: mul mul sub greater_or_equal sub 
+  Function: divd calls: greater_or_equal div2 mul2 
+  Function: mul2 calls: 
+  Function: div2 calls: 
+  Function: greater_or_equal calls: 
+  Function: mul calls: 
+  Function: houtput calls: fprintf fprintf fprintf 
+  Function: output calls: printf printf puts fprintf fprintf fprintf 
+  Function: fprintf calls: 
+  Function: puts calls: 
+  Function: printf calls: 
+  Function: sub1 calls: 
+  Function: sub calls: 
+  Function: add calls: 
+  Function: __uint64_identity calls: 
+  Function: __uint32_identity calls: 
+  Function: __uint16_identity calls: 
+  Function: __bswap_64 calls: 
+  Function: __bswap_32 calls: 
+  Function: __bswap_16 calls: 
+2 warnings generated.
+/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x1b): undefined reference to `main'
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+
+./repo/src/code.c:208:10: warning: implicit declaration of function 'randomize' is invalid in C99 [-Wimplicit-function-declaration]
+                x[0] = randomize();
+                       ^
+./repo/src/code.c:270:17: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                fprintf(file, argv[2]);
+                              ^~~~~~~
+./repo/src/code.c:270:17: note: treat the string as an argument to avoid this
+                fprintf(file, argv[2]);
+                              ^
+                              "%s", 
+ --- Call graph Dump --- 
+  Function: < root > calls: __bswap_16 __bswap_32 __bswap_64 __uint16_identity __uint32_identity __uint64_identity add sub sub1 output printf puts fprintf houtput mul greater_or_equal div2 mul2 divd mod is_odd is_0 is_1 is_n_minus_1 qpow tran miller_rabin randomize rand genRand main fopen srand time scanf clock 
+  Function: main calls: fopen fprintf fprintf srand time scanf srand genRand miller_rabin genRand genRand miller_rabin genRand printf output houtput printf output houtput mul output printf clock fprintf clock miller_rabin 
+  Function: clock calls: 
+  Function: scanf calls: 
+  Function: time calls: 
+  Function: srand calls: 
+  Function: fopen calls: 
+  Function: genRand calls: randomize randomize rand rand 
+  Function: miller_rabin calls: divd sub1 is_odd div2 randomize qpow is_1 is_n_minus_1 printf tran fprintf tran mul mod is_n_minus_1 printf tran fprintf tran printf tran fprintf tran fprintf fprintf 
+  Function: randomize calls: rand rand rand 
+  Function: rand calls: 
+  Function: tran calls: 
+  Function: qpow calls: is_0 is_odd div2 qpow mul mod mul mod 
+  Function: is_n_minus_1 calls: sub1 
+  Function: is_1 calls: 
+  Function: is_0 calls: 
+  Function: is_odd calls: 
+  Function: mod calls: mul mul sub greater_or_equal sub 
+  Function: divd calls: greater_or_equal div2 mul2 
+  Function: mul2 calls: 
+  Function: div2 calls: 
+  Function: greater_or_equal calls: 
+  Function: mul calls: 
+  Function: houtput calls: fprintf fprintf fprintf 
+  Function: output calls: printf printf puts fprintf fprintf fprintf 
+  Function: fprintf calls: 
+  Function: puts calls: 
+  Function: printf calls: 
+  Function: sub1 calls: 
+  Function: sub calls: 
+  Function: add calls: 
+  Function: __uint64_identity calls: 
+  Function: __uint32_identity calls: 
+  Function: __uint16_identity calls: 
+  Function: __bswap_64 calls: 
+  Function: __bswap_32 calls: 
+  Function: __bswap_16 calls: 
+2 warnings generated.
+
+./repo/src/code.c:208:10: warning: implicit declaration of function 'randomize' is invalid in C99 [-Wimplicit-function-declaration]
+                x[0] = randomize();
+                       ^
+./repo/src/code.c:270:17: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                fprintf(file, argv[2]);
+                              ^~~~~~~
+./repo/src/code.c:270:17: note: treat the string as an argument to avoid this
+                fprintf(file, argv[2]);
+                              ^
+                              "%s", 
+ --- Call graph Dump --- 
+  Function: < root > calls: __bswap_16 __bswap_32 __bswap_64 __uint16_identity __uint32_identity __uint64_identity add sub sub1 output printf puts fprintf houtput mul greater_or_equal div2 mul2 divd mod is_odd is_0 is_1 is_n_minus_1 qpow tran miller_rabin randomize rand genRand main fopen srand time scanf clock 
+  Function: main calls: fopen fprintf fprintf srand time scanf srand genRand miller_rabin genRand genRand miller_rabin genRand printf output houtput printf output houtput mul output printf clock fprintf clock miller_rabin 
+  Function: clock calls: 
+  Function: scanf calls: 
+  Function: time calls: 
+  Function: srand calls: 
+  Function: fopen calls: 
+  Function: genRand calls: randomize randomize rand rand 
+  Function: miller_rabin calls: divd sub1 is_odd div2 randomize qpow is_1 is_n_minus_1 printf tran fprintf tran mul mod is_n_minus_1 printf tran fprintf tran printf tran fprintf tran fprintf fprintf 
+  Function: randomize calls: rand rand rand 
+  Function: rand calls: 
+  Function: tran calls: 
+  Function: qpow calls: is_0 is_odd div2 qpow mul mod mul mod 
+  Function: is_n_minus_1 calls: sub1 
+  Function: is_1 calls: 
+  Function: is_0 calls: 
+  Function: is_odd calls: 
+  Function: mod calls: mul mul sub greater_or_equal sub 
+  Function: divd calls: greater_or_equal div2 mul2 
+  Function: mul2 calls: 
+  Function: div2 calls: 
+  Function: greater_or_equal calls: 
+  Function: mul calls: 
+  Function: houtput calls: fprintf fprintf fprintf 
+  Function: output calls: printf printf puts fprintf fprintf fprintf 
+  Function: fprintf calls: 
+  Function: puts calls: 
+  Function: printf calls: 
+  Function: sub1 calls: 
+  Function: sub calls: 
+  Function: add calls: 
+  Function: __uint64_identity calls: 
+  Function: __uint32_identity calls: 
+  Function: __uint16_identity calls: 
+  Function: __bswap_64 calls: 
+  Function: __bswap_32 calls: 
+  Function: __bswap_16 calls: 
+2 warnings generated.
+
+./repo/src/code.c:208:10: warning: implicit declaration of function 'randomize' is invalid in C99 [-Wimplicit-function-declaration]
+                x[0] = randomize();
+                       ^
+./repo/src/code.c:270:17: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                fprintf(file, argv[2]);
+                              ^~~~~~~
+./repo/src/code.c:270:17: note: treat the string as an argument to avoid this
+                fprintf(file, argv[2]);
+                              ^
+                              "%s", 
+ --- Call graph Dump --- 
+  Function: < root > calls: __bswap_16 __bswap_32 __bswap_64 __uint16_identity __uint32_identity __uint64_identity add sub sub1 output printf puts fprintf houtput mul greater_or_equal div2 mul2 divd mod is_odd is_0 is_1 is_n_minus_1 qpow tran miller_rabin randomize rand genRand main fopen srand time scanf clock 
+  Function: main calls: fopen fprintf fprintf srand time scanf srand genRand miller_rabin genRand genRand miller_rabin genRand printf output houtput printf output houtput mul output printf clock fprintf clock miller_rabin 
+  Function: clock calls: 
+  Function: scanf calls: 
+  Function: time calls: 
+  Function: srand calls: 
+  Function: fopen calls: 
+  Function: genRand calls: randomize randomize rand rand 
+  Function: miller_rabin calls: divd sub1 is_odd div2 randomize qpow is_1 is_n_minus_1 printf tran fprintf tran mul mod is_n_minus_1 printf tran fprintf tran printf tran fprintf tran fprintf fprintf 
+  Function: randomize calls: rand rand rand 
+  Function: rand calls: 
+  Function: tran calls: 
+  Function: qpow calls: is_0 is_odd div2 qpow mul mod mul mod 
+  Function: is_n_minus_1 calls: sub1 
+  Function: is_1 calls: 
+  Function: is_0 calls: 
+  Function: is_odd calls: 
+  Function: mod calls: mul mul sub greater_or_equal sub 
+  Function: divd calls: greater_or_equal div2 mul2 
+  Function: mul2 calls: 
+  Function: div2 calls: 
+  Function: greater_or_equal calls: 
+  Function: mul calls: 
+  Function: houtput calls: fprintf fprintf fprintf 
+  Function: output calls: printf printf puts fprintf fprintf fprintf 
+  Function: fprintf calls: 
+  Function: puts calls: 
+  Function: printf calls: 
+  Function: sub1 calls: 
+  Function: sub calls: 
+  Function: add calls: 
+  Function: __uint64_identity calls: 
+  Function: __uint32_identity calls: 
+  Function: __uint16_identity calls: 
+  Function: __bswap_64 calls: 
+  Function: __bswap_32 calls: 
+  Function: __bswap_16 calls: 
+2 warnings generated.
+
+./repo/src/code.c:208:10: warning: implicit declaration of function 'randomize' is invalid in C99 [-Wimplicit-function-declaration]
+                x[0] = randomize();
+                       ^
+./repo/src/code.c:270:17: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                fprintf(file, argv[2]);
+                              ^~~~~~~
+./repo/src/code.c:270:17: note: treat the string as an argument to avoid this
+                fprintf(file, argv[2]);
+                              ^
+                              "%s", 
+ --- Call graph Dump --- 
+  Function: < root > calls: __bswap_16 __bswap_32 __bswap_64 __uint16_identity __uint32_identity __uint64_identity add sub sub1 output printf puts fprintf houtput mul greater_or_equal div2 mul2 divd mod is_odd is_0 is_1 is_n_minus_1 qpow tran miller_rabin randomize rand genRand main fopen srand time scanf clock 
+  Function: main calls: fopen fprintf fprintf srand time scanf srand genRand miller_rabin genRand genRand miller_rabin genRand printf output houtput printf output houtput mul output printf clock fprintf clock miller_rabin 
+  Function: clock calls: 
+  Function: scanf calls: 
+  Function: time calls: 
+  Function: srand calls: 
+  Function: fopen calls: 
+  Function: genRand calls: randomize randomize rand rand 
+  Function: miller_rabin calls: divd sub1 is_odd div2 randomize qpow is_1 is_n_minus_1 printf tran fprintf tran mul mod is_n_minus_1 printf tran fprintf tran printf tran fprintf tran fprintf fprintf 
+  Function: randomize calls: rand rand rand 
+  Function: rand calls: 
+  Function: tran calls: 
+  Function: qpow calls: is_0 is_odd div2 qpow mul mod mul mod 
+  Function: is_n_minus_1 calls: sub1 
+  Function: is_1 calls: 
+  Function: is_0 calls: 
+  Function: is_odd calls: 
+  Function: mod calls: mul mul sub greater_or_equal sub 
+  Function: divd calls: greater_or_equal div2 mul2 
+  Function: mul2 calls: 
+  Function: div2 calls: 
+  Function: greater_or_equal calls: 
+  Function: mul calls: 
+  Function: houtput calls: fprintf fprintf fprintf 
+  Function: output calls: printf printf puts fprintf fprintf fprintf 
+  Function: fprintf calls: 
+  Function: puts calls: 
+  Function: printf calls: 
+  Function: sub1 calls: 
+  Function: sub calls: 
+  Function: add calls: 
+  Function: __uint64_identity calls: 
+  Function: __uint32_identity calls: 
+  Function: __uint16_identity calls: 
+  Function: __bswap_64 calls: 
+  Function: __bswap_32 calls: 
+  Function: __bswap_16 calls: 
+2 warnings generated.
+
+./repo/src/code.c:208:10: warning: implicit declaration of function 'randomize' is invalid in C99 [-Wimplicit-function-declaration]
+                x[0] = randomize();
+                       ^
+./repo/src/code.c:270:17: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                fprintf(file, argv[2]);
+                              ^~~~~~~
+./repo/src/code.c:270:17: note: treat the string as an argument to avoid this
+                fprintf(file, argv[2]);
+                              ^
+                              "%s", 
+ --- Call graph Dump --- 
+  Function: < root > calls: __bswap_16 __bswap_32 __bswap_64 __uint16_identity __uint32_identity __uint64_identity add sub sub1 output printf puts fprintf houtput mul greater_or_equal div2 mul2 divd mod is_odd is_0 is_1 is_n_minus_1 qpow tran miller_rabin randomize rand genRand main fopen srand time scanf clock 
+  Function: main calls: fopen fprintf fprintf srand time scanf srand genRand miller_rabin genRand genRand miller_rabin genRand printf output houtput printf output houtput mul output printf clock fprintf clock miller_rabin 
+  Function: clock calls: 
+  Function: scanf calls: 
+  Function: time calls: 
+  Function: srand calls: 
+  Function: fopen calls: 
+  Function: genRand calls: randomize randomize rand rand 
+  Function: miller_rabin calls: divd sub1 is_odd div2 randomize qpow is_1 is_n_minus_1 printf tran fprintf tran mul mod is_n_minus_1 printf tran fprintf tran printf tran fprintf tran fprintf fprintf 
+  Function: randomize calls: rand rand rand 
+  Function: rand calls: 
+  Function: tran calls: 
+  Function: qpow calls: is_0 is_odd div2 qpow mul mod mul mod 
+  Function: is_n_minus_1 calls: sub1 
+  Function: is_1 calls: 
+  Function: is_0 calls: 
+  Function: is_odd calls: 
+  Function: mod calls: mul mul sub greater_or_equal sub 
+  Function: divd calls: greater_or_equal div2 mul2 
+  Function: mul2 calls: 
+  Function: div2 calls: 
+  Function: greater_or_equal calls: 
+  Function: mul calls: 
+  Function: houtput calls: fprintf fprintf fprintf 
+  Function: output calls: printf printf puts fprintf fprintf fprintf 
+  Function: fprintf calls: 
+  Function: puts calls: 
+  Function: printf calls: 
+  Function: sub1 calls: 
+  Function: sub calls: 
+  Function: add calls: 
+  Function: __uint64_identity calls: 
+  Function: __uint32_identity calls: 
+  Function: __uint16_identity calls: 
+  Function: __bswap_64 calls: 
+  Function: __bswap_32 calls: 
+  Function: __bswap_16 calls: 
+2 warnings generated.
+
+./repo/src/code.c:208:10: warning: implicit declaration of function 'randomize' is invalid in C99 [-Wimplicit-function-declaration]
+                x[0] = randomize();
+                       ^
+./repo/src/code.c:270:17: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                fprintf(file, argv[2]);
+                              ^~~~~~~
+./repo/src/code.c:270:17: note: treat the string as an argument to avoid this
+                fprintf(file, argv[2]);
+                              ^
+                              "%s", 
+ --- Call graph Dump --- 
+  Function: < root > calls: __bswap_16 __bswap_32 __bswap_64 __uint16_identity __uint32_identity __uint64_identity add sub sub1 output printf puts fprintf houtput mul greater_or_equal div2 mul2 divd mod is_odd is_0 is_1 is_n_minus_1 qpow tran miller_rabin randomize rand genRand main fopen srand time scanf clock 
+  Function: main calls: fopen fprintf fprintf srand time scanf srand genRand miller_rabin genRand genRand miller_rabin genRand printf output houtput printf output houtput mul output printf clock fprintf clock miller_rabin 
+  Function: clock calls: 
+  Function: scanf calls: 
+  Function: time calls: 
+  Function: srand calls: 
+  Function: fopen calls: 
+  Function: genRand calls: randomize randomize rand rand 
+  Function: miller_rabin calls: divd sub1 is_odd div2 randomize qpow is_1 is_n_minus_1 printf tran fprintf tran mul mod is_n_minus_1 printf tran fprintf tran printf tran fprintf tran fprintf fprintf 
+  Function: randomize calls: rand rand rand 
+  Function: rand calls: 
+  Function: tran calls: 
+  Function: qpow calls: is_0 is_odd div2 qpow mul mod mul mod 
+  Function: is_n_minus_1 calls: sub1 
+  Function: is_1 calls: 
+  Function: is_0 calls: 
+  Function: is_odd calls: 
+  Function: mod calls: mul mul sub greater_or_equal sub 
+  Function: divd calls: greater_or_equal div2 mul2 
+  Function: mul2 calls: 
+  Function: div2 calls: 
+  Function: greater_or_equal calls: 
+  Function: mul calls: 
+  Function: houtput calls: fprintf fprintf fprintf 
+  Function: output calls: printf printf puts fprintf fprintf fprintf 
+  Function: fprintf calls: 
+  Function: puts calls: 
+  Function: printf calls: 
+  Function: sub1 calls: 
+  Function: sub calls: 
+  Function: add calls: 
+  Function: __uint64_identity calls: 
+  Function: __uint32_identity calls: 
+  Function: __uint16_identity calls: 
+  Function: __bswap_64 calls: 
+  Function: __bswap_32 calls: 
+  Function: __bswap_16 calls: 
+2 warnings generated.
+
+./repo/src/code.c:208:10: warning: implicit declaration of function 'randomize' is invalid in C99 [-Wimplicit-function-declaration]
+                x[0] = randomize();
+                       ^
+./repo/src/code.c:270:17: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                fprintf(file, argv[2]);
+                              ^~~~~~~
+./repo/src/code.c:270:17: note: treat the string as an argument to avoid this
+                fprintf(file, argv[2]);
+                              ^
+                              "%s", 
+ --- Call graph Dump --- 
+  Function: < root > calls: __bswap_16 __bswap_32 __bswap_64 __uint16_identity __uint32_identity __uint64_identity add sub sub1 output printf puts fprintf houtput mul greater_or_equal div2 mul2 divd mod is_odd is_0 is_1 is_n_minus_1 qpow tran miller_rabin randomize rand genRand main fopen srand time scanf clock 
+  Function: main calls: fopen fprintf fprintf srand time scanf srand genRand miller_rabin genRand genRand miller_rabin genRand printf output houtput printf output houtput mul output printf clock fprintf clock miller_rabin 
+  Function: clock calls: 
+  Function: scanf calls: 
+  Function: time calls: 
+  Function: srand calls: 
+  Function: fopen calls: 
+  Function: genRand calls: randomize randomize rand rand 
+  Function: miller_rabin calls: divd sub1 is_odd div2 randomize qpow is_1 is_n_minus_1 printf tran fprintf tran mul mod is_n_minus_1 printf tran fprintf tran printf tran fprintf tran fprintf fprintf 
+  Function: randomize calls: rand rand rand 
+  Function: rand calls: 
+  Function: tran calls: 
+  Function: qpow calls: is_0 is_odd div2 qpow mul mod mul mod 
+  Function: is_n_minus_1 calls: sub1 
+  Function: is_1 calls: 
+  Function: is_0 calls: 
+  Function: is_odd calls: 
+  Function: mod calls: mul mul sub greater_or_equal sub 
+  Function: divd calls: greater_or_equal div2 mul2 
+  Function: mul2 calls: 
+  Function: div2 calls: 
+  Function: greater_or_equal calls: 
+  Function: mul calls: 
+  Function: houtput calls: fprintf fprintf fprintf 
+  Function: output calls: printf printf puts fprintf fprintf fprintf 
+  Function: fprintf calls: 
+  Function: puts calls: 
+  Function: printf calls: 
+  Function: sub1 calls: 
+  Function: sub calls: 
+  Function: add calls: 
+  Function: __uint64_identity calls: 
+  Function: __uint32_identity calls: 
+  Function: __uint16_identity calls: 
+  Function: __bswap_64 calls: 
+  Function: __bswap_32 calls: 
+  Function: __bswap_16 calls: 
+2 warnings generated.
+
+./repo/src/code.c:208:10: warning: implicit declaration of function 'randomize' is invalid in C99 [-Wimplicit-function-declaration]
+                x[0] = randomize();
+                       ^
+./repo/src/code.c:270:17: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+                fprintf(file, argv[2]);
+                              ^~~~~~~
+./repo/src/code.c:270:17: note: treat the string as an argument to avoid this
+                fprintf(file, argv[2]);
+                              ^
+                              "%s", 
+ --- Call graph Dump --- 
+  Function: < root > calls: __bswap_16 __bswap_32 __bswap_64 __uint16_identity __uint32_identity __uint64_identity add sub sub1 output printf puts fprintf houtput mul greater_or_equal div2 mul2 divd mod is_odd is_0 is_1 is_n_minus_1 qpow tran miller_rabin randomize rand genRand main fopen srand time scanf clock 
+  Function: main calls: fopen fprintf fprintf srand time scanf srand genRand miller_rabin genRand genRand miller_rabin genRand printf output houtput printf output houtput mul output printf clock fprintf clock miller_rabin 
+  Function: clock calls: 
+  Function: scanf calls: 
+  Function: time calls: 
+  Function: srand calls: 
+  Function: fopen calls: 
+  Function: genRand calls: randomize randomize rand rand 
+  Function: miller_rabin calls: divd sub1 is_odd div2 randomize qpow is_1 is_n_minus_1 printf tran fprintf tran mul mod is_n_minus_1 printf tran fprintf tran printf tran fprintf tran fprintf fprintf 
+  Function: randomize calls: rand rand rand 
+  Function: rand calls: 
+  Function: tran calls: 
+  Function: qpow calls: is_0 is_odd div2 qpow mul mod mul mod 
+  Function: is_n_minus_1 calls: sub1 
+  Function: is_1 calls: 
+  Function: is_0 calls: 
+  Function: is_odd calls: 
+  Function: mod calls: mul mul sub greater_or_equal sub 
+  Function: divd calls: greater_or_equal div2 mul2 
+  Function: mul2 calls: 
+  Function: div2 calls: 
+  Function: greater_or_equal calls: 
+  Function: mul calls: 
+  Function: houtput calls: fprintf fprintf fprintf 
+  Function: output calls: printf printf puts fprintf fprintf fprintf 
+  Function: fprintf calls: 
+  Function: puts calls: 
+  Function: printf calls: 
+  Function: sub1 calls: 
+  Function: sub calls: 
+  Function: add calls: 
+  Function: __uint64_identity calls: 
+  Function: __uint32_identity calls: 
+  Function: __uint16_identity calls: 
+  Function: __bswap_64 calls: 
+  Function: __bswap_32 calls: 
+  Function: __bswap_16 calls: 
+2 warnings generated.
+

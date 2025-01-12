@@ -1,0 +1,46 @@
+{
+    "main": [
+        "genRand",
+        "miller_rabin",
+        "output",
+        "houtput",
+        "mul"
+    ],
+    "genRand": [
+        "randomize"
+    ],
+    "miller_rabin": [
+        "divd",
+        "sub1",
+        "is_odd",
+        "div2",
+        "randomize",
+        "qpow",
+        "is_1",
+        "is_n_minus_1",
+        "tran",
+        "mul",
+        "mod"
+    ],
+    "qpow": [
+        "is_0",
+        "is_odd",
+        "div2",
+        "qpow",
+        "mul",
+        "mod"
+    ],
+    "is_n_minus_1": [
+        "sub1"
+    ],
+    "mod": [
+        "mul",
+        "sub",
+        "greater_or_equal"
+    ],
+    "divd": [
+        "greater_or_equal",
+        "div2",
+        "mul2"
+    ]
+}
