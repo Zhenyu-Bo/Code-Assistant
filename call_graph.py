@@ -66,7 +66,7 @@ def generate_call_graph(repo_path):
                     "-analyzer-checker=debug.DumpCallGraph",
                     "-Xclang",
                     "-analyze",
-                    "-c",  # 仅编译，不链接
+                    # "-c",  # 仅编译，不链接
                     file
                 ],
                 stdout=subprocess.PIPE,
