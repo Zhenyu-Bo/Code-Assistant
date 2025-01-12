@@ -78,6 +78,11 @@ def main(repo_path):
     source_files = call_graph.discover_project_files(repo_path, extensions=[".c"])
     for file in source_files:
         function_contents.update(get_function_contents(file))
+
+    # 保存所有函数内容到 JSON 文件
+    with open("function_contents.json", "w", encoding='utf-8') as f:
+        json.dump(function_contents, f, ensure_ascii=False, indent=4)
+
     documents = {}
     for function in order:
         print(f"Generating document for {function}")
