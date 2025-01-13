@@ -33,7 +33,35 @@ def load_call_graph(graph_file):
         call_graph = json.load(f)
     return call_graph
 
-def generate_repair_prompt(function_name, function_docs, function_contents, related_functions, task_description):
+def get_all_related_functions(function_name, call_graph):
+    """
+    使用广度优先搜索算法获取所有与指定函数相关的函数。
+    
+    参数:
+    function_name (str): 函数名
+    call_graph (dict): 调用图
+    
+    返回:
+    set: 所有相关函数的集合
+    """
+    related_functions = set()
+    queue = [function_name]
+    
+    while queue:
+        current_function = queue.pop(0)
+        if current_function not in related_functions:
+            related_functions.add(current_function)
+            if current_function in call_graph:
+                for called_function in call_graph[current_function]:
+                    if called_function not in related_functions:
+                        queue.append(called_function)
+                        
+    # 从相关函数集合中排除自身
+    related_functions.discard(function_name)
+    
+    return related_functions
+
+def generate_repair_prompt(function_name, function_docs, function_contents, related_functions, task_description, additional_description):
     """
     生成适合大模型的代码修复 Prompt。
     :param function_name: 出错函数名
@@ -60,17 +88,19 @@ def generate_repair_prompt(function_name, function_docs, function_contents, rela
             # print(f"Function: {func}\n{function_docs[func]}\n\n")
 
     prompt += "### Repair Request ###\n"
-    prompt += f"Error occurs during compiling in the {function_name} function, please analyze the error in the above code, explain the reasons and provide a fixed version for the error function, considering its context and related functions."
+    prompt += additional_description
+    prompt += f"请详细分析{function_name}函数及其相关函数的代码，找出错误并修复。"
+    # prompt += "Please analyze the error in the above code, explain the reasons and provide a fixed version for the error function, considering its context and related functions."
+    # prompt += f"Note that problems may arise in {function_name} and the related functions."
     # prompt += "Finally print the documents of the related functions which I have given you."
     return prompt
 
-def detect_and_fix_errors(function_name, function_docs, function_contents, related_functions, task_description):
+def detect_and_fix_errors(function_name, function_docs, function_contents, related_functions, task_description, additional_description):
     """
     使用大模型对特定函数进行错误检测与修复，并将函数文档注入到 prompt 中进行辅助检测。
     
     参数:
     function_name (str): 函数名
-    function_docs (dict): 包含所有函数文档的字典
     function_contents (dict): 包含所有函数内容的字典
     related_functions (list): 相关函数列表
     task_description (str): 任务描述
@@ -78,11 +108,11 @@ def detect_and_fix_errors(function_name, function_docs, function_contents, relat
     返回:
     str: 修复后的函数代码
     """
-    prompt = generate_repair_prompt(function_name, function_docs, function_contents, related_functions, task_description)
+    prompt = generate_repair_prompt(function_name, function_docs, function_contents, related_functions, task_description, additional_description)
     
     try:
         completion = client.chat.completions.create(
-            model="qwen-turbo",
+            model="qwen-plus",
             messages=[
                 {'role': 'system', 'content': 'You are a helpful assistant.'},
                 {'role': 'user', 'content': prompt}
@@ -113,19 +143,18 @@ if __name__ == "__main__":
         help='任务类型,repair 为检测和修复错误,complete 为补全代码'
     )
     
-    parser.add_argument(
-        '--task_description',
-        help='任务描述'
-    )
     args = parser.parse_args()
+    function_name = args.function_name
+    
+    additional_description = f"这个函数期望计算a的b次方对m的取模结果,但是并未成功获得正确的结果，请检查并修复错误，并给出原因。注意问题可能出现在{function_name}中，也可能出现在其调用的函数中,所以在检查一个函数时，你不仅需要检查该函数的实现是否存在问题，还要检查它调用的函数的实现是否正确。"
 
     function_docs = load_function_docs("documents.pkl")
     function_contents = load_function_contents("function_contents.json")
     call_graph = load_call_graph("call_graph.json")
-    related_functions = call_graph.get(args.function_name, [])
+    # related_functions = call_graph.get(args.function_name, [])
+    related_functions = get_all_related_functions(function_name, call_graph)
     
     task_description = repair_task if args.task_type == 'repair' else complete_task
-    task_description = task_description + args.task_description if args.task_description else task_description
 
-    fixed_code = detect_and_fix_errors(args.function_name, function_docs, function_contents, related_functions, task_description)
+    fixed_code = detect_and_fix_errors(args.function_name, function_docs, function_contents, related_functions, task_description, additional_description)
     print(f"Fixed code:\n{fixed_code}")
