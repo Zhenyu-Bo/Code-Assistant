@@ -56,8 +56,8 @@ def generate_repair_prompt(function_name, function_docs, function_contents, rela
         if func in function_contents:
             prompt += f"Function: {func}\n"
             # prompt += f"{function_docs[func]}\n\n"
-            # prompt += f"{function_contents[func]}\n\n"
-            print(f"Function: {func}\n{function_docs[func]}\n\n")
+            prompt += f"{function_contents[func]}\n\n"
+            # print(f"Function: {func}\n{function_docs[func]}\n\n")
 
     prompt += "### Repair Request ###\n"
     prompt += f"Error occurs during compiling in the {function_name} function, please analyze the error in the above code, explain the reasons and provide a fixed version for the error function, considering its context and related functions."
