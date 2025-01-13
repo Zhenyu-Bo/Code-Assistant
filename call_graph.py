@@ -82,7 +82,7 @@ def generate_call_graph(repo_path):
             combined_output = output + error_output
             
             # 保存clang的报错信息到error_output.log中以便后续使用
-            with open('error_output.log', 'a', encoding='utf-8') as f:
+            with open('error_output.log', 'w', encoding='utf-8') as f:
                 f.write(error_output)
                 f.write('\n')
             

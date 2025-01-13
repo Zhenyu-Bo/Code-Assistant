@@ -33,7 +33,12 @@ def load_call_graph(graph_file):
         call_graph = json.load(f)
     return call_graph
 
-def generate_repair_prompt(function_name, function_docs, function_contents, related_functions, task_description):
+def load_error_log(log_file):
+    with open(log_file, 'r', encoding='utf-8') as f:
+        error_log = f.read()
+    return error_log
+
+def generate_repair_prompt(function_name, function_docs, function_contents, related_functions, task_description, error_log_file):
     """
     生成适合大模型的代码修复 Prompt。
     :param function_name: 出错函数名
@@ -41,16 +46,19 @@ def generate_repair_prompt(function_name, function_docs, function_contents, rela
     :param function_docs: 包含所有函数文档的字典
     :param related_functions: 相关函数列表
     :param task_description: 修复任务描述
+    :param error_log_file: 错误日志文件路径
     :return: Prompt 字符串
     """
     function_doc = function_docs.get(function_name, "No documentation available for this function.")
     function_code = function_contents.get(function_name, "No code available for this function.")
+    error_log = load_error_log(error_log_file)
     
     prompt = f"### Task Description ###\n{task_description}\n\n"
     prompt += f"### Error Function ###\nFunction Name: {function_name}\n\n"
     prompt += f"### Function Documentation ###\n{function_doc}\n\n"
     prompt += f"### Function Code ###\n{function_code}\n\n"
-    prompt += "### Related Functions and their contents ###\n"
+    prompt += f"### Error Log ###\n{error_log}\n\n"
+    prompt += "### Related Functions and their contents ###\n\n"
 
     for func in related_functions:
         if func in function_contents:
@@ -64,7 +72,7 @@ def generate_repair_prompt(function_name, function_docs, function_contents, rela
     # prompt += "Finally print the documents of the related functions which I have given you."
     return prompt
 
-def detect_and_fix_errors(function_name, function_docs, function_contents, related_functions, task_description):
+def detect_and_fix_errors(function_name, function_docs, function_contents, related_functions, task_description, error_log_file):
     """
     使用大模型对特定函数进行错误检测与修复，并将函数文档注入到 prompt 中进行辅助检测。
     
@@ -78,7 +86,7 @@ def detect_and_fix_errors(function_name, function_docs, function_contents, relat
     返回:
     str: 修复后的函数代码
     """
-    prompt = generate_repair_prompt(function_name, function_docs, function_contents, related_functions, task_description)
+    prompt = generate_repair_prompt(function_name, function_docs, function_contents, related_functions, task_description, error_log_file)
     
     try:
         completion = client.chat.completions.create(
@@ -122,10 +130,11 @@ if __name__ == "__main__":
     function_docs = load_function_docs("documents.pkl")
     function_contents = load_function_contents("function_contents.json")
     call_graph = load_call_graph("call_graph.json")
+    error_log_file = "error_output.log"
     related_functions = call_graph.get(args.function_name, [])
     
     task_description = repair_task if args.task_type == 'repair' else complete_task
     task_description = task_description + args.task_description if args.task_description else task_description
 
-    fixed_code = detect_and_fix_errors(args.function_name, function_docs, function_contents, related_functions, task_description)
+    fixed_code = detect_and_fix_errors(args.function_name, function_docs, function_contents, related_functions, task_description, error_log_file)
     print(f"Fixed code:\n{fixed_code}")
