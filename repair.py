@@ -1,16 +1,21 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer
+import os
+from openai import OpenAI
 import json
 import pickle
 import argparse
 
-MPATH = 'Qwen/Qwen2-1.5B-Instruct'
-model = AutoModelForCausalLM.from_pretrained(
-    MPATH,
-    torch_dtype="auto",
-    device_map="auto"
-)
 
-tokenizer = AutoTokenizer.from_pretrained(MPATH)
+GDH_API_KEY = "sk-66ccd9858bc24cce93e1b5f9ae542262"
+
+# 初始化通义千问API客户端
+try:
+    client = OpenAI(
+        api_key=GDH_API_KEY,
+        base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+    )
+except Exception as e:
+    print(f"初始化API客户端时出错：{e}")
+    exit(1)
 
 def load_function_docs(doc_file):
     with open(doc_file, 'rb') as f:
@@ -50,7 +55,6 @@ def generate_repair_prompt(function_name, function_docs, function_contents, rela
         if func in function_contents:
             prompt += f"Function: {func}\n"
             prompt += f"{function_docs[func]}\n\n"
-            # prompt += f"{function_contents[func]}\n\n"
 
     prompt += "### Repair Request ###\n"
     prompt += "Please analyze the error in the above code, explain the reasons and provide a fixed version for the error function, considering its context and related functions."
@@ -62,7 +66,6 @@ def detect_and_fix_errors(function_name, function_docs, function_contents, relat
     
     参数:
     function_name (str): 函数名
-    function_code (str): 函数代码
     function_docs (dict): 包含所有函数文档的字典
     function_contents (dict): 包含所有函数内容的字典
     related_functions (list): 相关函数列表
@@ -73,16 +76,19 @@ def detect_and_fix_errors(function_name, function_docs, function_contents, relat
     """
     prompt = generate_repair_prompt(function_name, function_docs, function_contents, related_functions, task_description)
     
-    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-    print("思考中...")
-    outputs = model.generate(
-        **inputs,
-        max_new_tokens=1024,
-        do_sample=True,
-        temperature=0.7,
-        top_p=0.8
-    )
-    response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    try:
+        completion = client.chat.completions.create(
+            model="qwen-turbo",
+            messages=[
+                {'role': 'system', 'content': 'You are a helpful assistant.'},
+                {'role': 'user', 'content': prompt}
+            ]
+        )
+        response = completion.choices[0].message.content
+    except Exception as e:
+        print(f"生成修复代码时出错：{e}")
+        return None
+
     fixed_code = response.split("Assistant:")[-1].strip()
     print("成功生成修复代码！")
     return fixed_code

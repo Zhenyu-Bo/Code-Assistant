@@ -5,6 +5,10 @@ import argparse
 import re
 import json
 import pickle
+import os
+from openai import OpenAI
+
+GDH_API_KEY = "sk-66ccd9858bc24cce93e1b5f9ae542262"
 
 
 def get_function_contents(file):
@@ -39,14 +43,15 @@ def get_function_contents(file):
     return function_contents
 
 
-mpath='Qwen/Qwen2-1.5B-Instruct'
-model = AutoModelForCausalLM.from_pretrained(
-    mpath,
-    torch_dtype="auto",
-    device_map="auto"
-)
-
-tokenizer = AutoTokenizer.from_pretrained(mpath)
+# 初始化通义千问API客户端
+try:
+    client = OpenAI(
+        api_key=GDH_API_KEY,
+        base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+    )
+except Exception as e:
+    print(f"初始化API客户端时出错：{e}")
+    exit(1)
 
 
 def main(repo_path):
@@ -95,17 +100,23 @@ def main(repo_path):
             prompt = prompt.replace('HaluanTyttöystävän.', "")
         else:
             prompt = prompt.replace('HaluanTyttöystävän.', "The following functions will be called:\n" + related)
-        inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-        outputs = model.generate(
-            **inputs,
-            max_new_tokens=1024,
-            do_sample=True,
-            temperature=0.7,
-            top_p=0.8
-        )
-        response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+        try:
+            completion = client.chat.completions.create(
+                model="qwen-turbo",
+                messages=[
+                    {'role': 'system', 'content': 'You are a helpful assistant.'},
+                    {'role': 'user', 'content': prompt}
+                ]
+            )
+            response = completion.choices[0].message.content
+        except Exception as e:
+            print(f"生成文档时出错：{e}")
+            continue
+
         response = response.split("Assistant:")[-1].strip()
         documents[function] = response
+
     with open("documents.pkl", "wb") as f:
         pickle.dump(documents, f)
 

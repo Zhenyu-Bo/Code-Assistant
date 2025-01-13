@@ -7,52 +7,16 @@
     "greater_or_equal": [],
     "div2": [],
     "mul2": [],
-    "divd": [
-        "greater_or_equal",
-        "div2",
-        "mul2"
-    ],
-    "mod": [
-        "mul",
-        "sub",
-        "greater_or_equal"
-    ],
+    "mod": [],
+    "divd": [],
     "is_odd": [],
     "is_0": [],
     "is_1": [],
-    "is_n_minus_1": [
-        "sub1"
-    ],
-    "qpow": [
-        "is_0",
-        "is_odd",
-        "div2",
-        "qpow",
-        "mul",
-        "mod"
-    ],
+    "is_n_minus_1": [],
+    "qpow": [],
     "tran": [],
     "randomize": [],
-    "miller_rabin": [
-        "divd",
-        "sub1",
-        "is_odd",
-        "div2",
-        "randomize",
-        "qpow",
-        "is_1",
-        "is_n_minus_1",
-        "tran",
-        "mul",
-        "mod"
-    ],
-    "genRand": [
-        "randomize"
-    ],
-    "main": [
-        "genRand",
-        "miller_rabin",
-        "output",
-        "mul"
-    ]
+    "miller_rabin": [],
+    "genRand": [],
+    "main": []
 }
