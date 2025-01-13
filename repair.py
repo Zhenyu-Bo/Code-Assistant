@@ -67,6 +67,7 @@ def generate_repair_prompt(function_name, function_docs, function_contents, rela
             # prompt += f"{function_contents[func]}\n\n"
             print(f"Function: {func}\n{function_docs[func]}\n\n")
     prompt += "ATTENTION: if the related functions are not printed, you can assume that they are already implemented in the code, instead of assuming them unimplemented. Also, all the variables and macro definitions is defined otherwhere. ERROR will ONLY occured in function calls.  \n\n"
+    prompt += "ATTENTION: the Error Log is often the MOST IMPORTANT!  \n\n"
     prompt += "### Repair Request ###\n"
     prompt += f"Error occurs during compiling in the {function_name} function, please analyze the error in the above code, explain the reasons and provide a fixed version for the error function, considering its context and related functions."
     # prompt += "Finally print the documents of the related functions which I have given you."
