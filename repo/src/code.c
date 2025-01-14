@@ -252,7 +252,7 @@ int main(int argc, char **argv) {
     printf("Number B: ");
     output(b);
 	LEN <<= 1;
-	mul(a);
+	mul(a, b);
 	output(a);
 	printf("Time used: %.3lfs\n", 1. * clock() / CLOCKS_PER_SEC);
 	LEN <<= 1; LENDIV2 <<= 1;
