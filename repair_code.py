@@ -88,7 +88,7 @@ def generate_repair_prompt(function_name, function_docs, function_contents, rela
             # print(f"Function: {func}\n{function_docs[func]}\n\n")
 
     prompt += "### Repair Request ###\n"
-    prompt += additional_description
+    # prompt += additional_description
     prompt += f"请详细分析{function_name}函数及其相关函数的代码，找出错误并修复。"
     # prompt += "Please analyze the error in the above code, explain the reasons and provide a fixed version for the error function, considering its context and related functions."
     # prompt += f"Note that problems may arise in {function_name} and the related functions."

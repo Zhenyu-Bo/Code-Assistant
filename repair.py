@@ -58,7 +58,7 @@ def generate_repair_prompt(function_name, function_docs, function_contents, rela
     prompt += f"### Function Documentation ###\n{function_doc}\n\n"
     prompt += f"### Function Code ###\n{function_code}\n\n"
     prompt += f"### Error Log ###\n{error_log}\n\n"
-    prompt += "### Related Functions and their contents ###\n\n"
+    prompt += "### Related Functions and their documents ###\n\n"
 
     for func in related_functions:
         if func in function_contents:
@@ -69,7 +69,9 @@ def generate_repair_prompt(function_name, function_docs, function_contents, rela
     prompt += "ATTENTION: if the related functions are not printed, you can assume that they are already implemented in the code, instead of assuming them unimplemented. Also, all the variables and macro definitions is defined otherwhere. ERROR will ONLY occured in function calls.  \n\n"
     prompt += "ATTENTION: the Error Log is often the MOST IMPORTANT!  \n\n"
     prompt += "### Repair Request ###\n"
-    prompt += f"Error occurs during compiling in the {function_name} function, please analyze the error in the above code, explain the reasons and provide a fixed version for the error function, considering its context and related functions."
+    # prompt += "这个函数期望计算a的b次方对m的取模结果,但是并未成功获得正确的结果，请检查并修复错误."
+    # prompt += f"请详细分析{function_name}函数及其相关函数的文档,这个函数期望计算a的b次方对m的取模结果,但是并未成功获得正确的结果，请检查并修复错误。"
+    prompt += f"请详细分析{function_name}函数及其相关函数的文档,检查并修复错误。"
     # prompt += "Finally print the documents of the related functions which I have given you."
     return prompt
 
@@ -91,7 +93,7 @@ def detect_and_fix_errors(function_name, function_docs, function_contents, relat
     
     try:
         completion = client.chat.completions.create(
-            model="qwen-turbo",
+            model="qwen-plus",
             messages=[
                 {'role': 'system', 'content': 'You are a helpful assistant.'},
                 {'role': 'user', 'content': prompt}
