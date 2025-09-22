@@ -3,13 +3,14 @@ import json
 import argparse
 
 
-GDH_API_KEY = "sk-66ccd9858bc24cce93e1b5f9ae542262"
-BZY_API_KEY = "sk-a11ed5e5b3a3473e86b42adb46571436"
+from dotenv import load_dotenv
+load_dotenv()
+DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY")
 
 # 初始化通义千问API客户端
 try:
     client = OpenAI(
-        api_key=GDH_API_KEY,
+        api_key=DASHSCOPE_API_KEY,
         base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
     )
 except Exception as e:

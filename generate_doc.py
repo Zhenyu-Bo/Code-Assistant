@@ -8,7 +8,10 @@ import pickle
 import os
 from openai import OpenAI
 
-GDH_API_KEY = "sk-66ccd9858bc24cce93e1b5f9ae542262"
+from dotenv import load_dotenv
+load_dotenv()
+
+DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY")
 
 
 def get_function_contents(file):
@@ -46,7 +49,7 @@ def get_function_contents(file):
 # 初始化通义千问API客户端
 try:
     client = OpenAI(
-        api_key=GDH_API_KEY,
+        api_key=DASHSCOPE_API_KEY,
         base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
     )
 except Exception as e:

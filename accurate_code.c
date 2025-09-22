@@ -129,7 +129,7 @@ void mod(Bighex a, Bighex b) {
 }
 
 char is_odd(Bighex a) {
-	return !(a[0] & 1);
+	return a[0] & 1;
 }
 
 char is_0(Bighex a) {
